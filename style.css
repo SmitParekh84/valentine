@@ -1,0 +1,584 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #ff6b9d 75%, #feca57 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+    padding: 20px 0;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Mute Button */
+.mute-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 9999;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.mute-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.mute-btn:active {
+    transform: scale(0.95);
+}
+
+.sound-icon {
+    font-size: 1.5rem;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.mute-btn.muted {
+    background: rgba(255, 100, 100, 0.3);
+}
+
+@media (max-width: 480px) {
+    .mute-btn {
+        width: 45px;
+        height: 45px;
+        top: 15px;
+        right: 15px;
+    }
+    
+    .sound-icon {
+        font-size: 1.3rem;
+    }
+}
+
+/* Floating Hearts Background */
+.hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.floating-heart {
+    position: absolute;
+    font-size: 30px;
+    opacity: 0.3;
+    animation: floatUp 10s infinite ease-in-out;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(100vh) scale(0.5) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.3;
+    }
+    90% {
+        opacity: 0.3;
+    }
+    100% {
+        transform: translateY(-100px) scale(1) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Main Card */
+.card-container {
+    position: relative;
+    z-index: 10;
+   
+    padding: 60px 50px;
+    
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
+    transition: all 0.3s ease;
+    margin: auto;
+    overflow: visible;
+}
+
+.card-container.shake {
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+    20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
+body.intense {
+    animation: intensePulse 0.5s ease-in-out;
+}
+
+@keyframes intensePulse {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.3); }
+}
+
+
+
+/* Question */
+.question-container {
+    margin-bottom: 40px;
+}
+
+.question {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
+    animation: pulse 2s ease-in-out infinite;
+    transition: all 0.3s ease;
+}
+
+.emotional-message {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-top: 15px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.5s ease;
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+    font-style: italic;
+}
+
+.emotional-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Countdown Container */
+.countdown-container {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    animation: fadeInScale 0.5s ease;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.countdown-text {
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.countdown-timer {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(255, 107, 157, 0.8);
+    animation: pulse 1s ease-in-out infinite;
+    margin: 15px 0;
+}
+
+.countdown-message {
+    font-size: 1.1rem;
+    color: #fff;
+    font-style: italic;
+    margin-top: 10px;
+    opacity: 0.9;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Buttons Container */
+.buttons-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    position: relative;
+    min-height: 80px;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+}
+
+/* Base Button Styles */
+.btn {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+/* YES Button */
+.yes-btn {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    animation: glow 2s ease-in-out infinite;
+    min-width: 150px;
+    min-height: 60px;
+    width: auto;
+    max-width: 55vw;
+    max-height: 60vh;
+    flex-shrink: 0;
+    height: auto;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    z-index: 50;
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2),
+                    0 0 20px rgba(245, 87, 108, 0.5);
+    }
+    50% {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2),
+                    0 0 40px rgba(245, 87, 108, 0.8);
+    }
+}
+
+.yes-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3),
+                0 0 50px rgba(245, 87, 108, 1);
+}
+
+.yes-btn:active {
+    transform: scale(0.98);
+}
+
+/* NO Button */
+.no-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    flex-shrink: 0;
+    position: relative;
+    transition: all 0.2s ease;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.no-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.no-btn:active {
+    transform: scale(0.95);
+}
+
+.no-btn.escaping {
+    position: fixed !important;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    cursor: pointer;
+    z-index: 100;
+}
+
+/* Success Screen */
+.success-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.success-screen.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.success-content {
+    text-align: center;
+    color: white;
+    animation: zoomIn 0.5s ease;
+}
+
+/* Success Image - Dosa */
+.success-image {
+    width: 300px;
+    height: 300px;
+    border-radius: 20px;
+    object-fit: cover;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: zoomIn 0.6s ease;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.success-title {
+    font-size: 5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 30px rgba(0, 0, 0, 0.3);
+    animation: bounce 1s ease infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+ 
+
+.success-submessage {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-top: 15px;
+    text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease 0.5s both;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}       transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.success-message {
+    font-size: 2rem;
+    font-weight: 500;
+    text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Heart Burst Animation */
+.heart-burst {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.burst-heart {
+    position: absolute;
+    font-size: 40px;
+    animation: burstOut 2s ease-out forwards;
+}
+
+@keyframes burstOut {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(3);
+        opacity: 0;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .card-container {
+        padding: 30px 20px;
+        width: 95%;
+        max-width: 800px;
+    }
+
+    .question {
+        font-size: 1.8rem;
+        line-height: 1.3;
+    }
+
+    /* Allow wrapping on mobile */
+    .buttons-container {
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 15px 5px;
+    }
+
+    
+    .success-submessage {
+        font-size: 1.2rem;
+        padding: 0 20px;
+    }
+    
+    .success-image {
+        width: 250px;
+        height: 250px;
+    }
+    .btn {
+        font-size: 1rem;
+        padding: 12px 30px;
+        min-width: 120px;
+        max-width: 80vw;
+    }
+    
+    .yes-btn {
+        min-width: 120px;
+        min-height: 50px;
+        max-width: 80vw !important;
+        max-height: 50vh !important;
+    }
+
+    .success-title {
+        font-size: 3.5rem;
+    }
+
+    .success-message {
+        font-size: 1.5rem;
+        padding: 0 20px;
+    }
+    
+    /* Ensure NO button wraps to new line and stays visible */
+    .no-btn {
+        width: 100%;
+        max-width: 200px;
+        white-space: normal;
+        word-wrap: break-word;
+        line-height: 1.4;
+    }
+    
+    /* Ensure escaping button is easier to see on mobile */
+    .no-btn.escaping {
+        z-index: 999;
+        font-size: 0.9rem;
+        padding: 10px 25px;
+        width: auto;
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-container {
+        padding: 30px 20px;
+    }
+
+    .question {
+        font-size: 1.5rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 10px 25px;
+        min-width: 100px;
+    }
+    
+    .
+    
+    .success-submessage {
+        font-size: 1rem;
+    }
+    
+    .success-image {
+        width: 200px;
+        height: 200px;
+    }yes-btn {
+        min-width: 100px;
+        min-height: 45px;
+    }
+
+    .buttons-container {
+        gap: 12px;
+    }
+
+    .success-title {
+        font-size: 2.5rem;
+    }
+
+    .success-message {
+        font-size: 1.2rem;
+    }
+    
+    .floating-heart {
+        font-size: 20px;
+    }
+}
+
+/* Confetti */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background-color: #f093fb;
+    position: fixed;
+    animation: confettiFall 3s linear forwards;
+    z-index: 1001;
+}
+
+@keyframes confettiFall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}

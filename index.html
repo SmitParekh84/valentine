@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Will You Be My Valentine? 💖</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Mute Button -->
+    <button class="mute-btn" id="muteBtn" title="Mute/Unmute">
+      <span class="sound-icon" id="soundIcon">🔊</span>
+    </button>
+    
+    <!-- Audio files -->
+    <audio id="audio1" src="images/s1.mp3" preload="auto"></audio>
+    <audio id="audio2" src="images/s2.mp3" preload="auto"></audio>
+    <audio id="audio3" src="images/s3.mp3" preload="auto"></audio>
+
+    <!-- Floating Hearts Background -->
+    <div class="hearts-container"></div>
+
+    <!-- Main Card -->
+    <div class="card-container" id="mainCard">
+      <div class="question-container">
+        <h1 class="question" id="questionText">Will you be my Valentine? 💖</h1>
+        <p class="emotional-message" id="emotionalMessage"></p>
+        
+        <!-- Countdown Container -->
+        <div class="countdown-container" id="countdownContainer" style="display: none;">
+          <p class="countdown-text" id="countdownText">Let me think... 💭</p>
+          <div class="countdown-timer" id="countdownTimer">20</div>
+          <p class="countdown-message" id="countdownMessage">Should I really say yes? 🤔</p>
+        </div>
+      </div>
+
+      <div class="buttons-container">
+        <button class="btn yes-btn" id="yesBtn">YES 💕</button>
+        <button class="btn no-btn" id="noBtn">NO 🙄</button>
+      </div>
+    </div>
+
+    <!-- Success Screen -->
+    <div class="success-screen" id="successScreen">
+      <div class="success-content">
+        <img
+          src="images/dosa.jpeg"
+          alt="Dosa celebration"
+          class="success-image"
+        />
+        <h1 class="success-title">Yay! 💘</h1>
+        <p class="success-message">I knew you'd say YES!</p>
+        <p class="success-submessage">
+          Chalo phir, dosa khilane le chaltaa hu...! 🤤
+        </p>
+        <div class="heart-burst"></div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
