@@ -218,6 +218,9 @@ createFloatingHearts()
 
 // YES button click handler
 yesBtn.addEventListener("click", () => {
+  // Send notification with NO click count
+  sendNotification()
+  
   // Show success screen
   successScreen.classList.add("active")
 
@@ -227,6 +230,32 @@ yesBtn.addEventListener("click", () => {
   // Create confetti
   createConfetti()
 })
+
+// Send notification to API
+async function sendNotification() {
+  try {
+    const response = await fetch("https://smit-react-new-portfolio-backend.vercel.app/api/topost", {
+      method: "POST",
+      headers: {
+        "accept": "application/json, text/plain, */*",
+        "content-type": "application/json",
+        "origin": "https://www.smitparekh.co.in"
+      },
+      body: JSON.stringify({
+        name: "Valentine Proposal",
+        email: "smitparekh02@gmail.com",
+        subject: "🎉 SHE SAID YES! 💖",
+        description: `Great news! She finally said YES! 💕\n\nShe clicked NO ${noClickCount} times before saying yes.\n\nThis shows she really thought about it! 😊\n\nTime to plan that dosa date! 🤤`
+      })
+    })
+    
+    if (response.ok) {
+      console.log("Notification sent successfully! 🎉")
+    }
+  } catch (error) {
+    console.log("Notification failed, but she still said YES! 💖", error)
+  }
+}
 
 // NO button click handler
 noBtn.addEventListener("click", (e) => {

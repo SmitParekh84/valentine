@@ -34,6 +34,7 @@ A beautiful, romantic, and interactive Valentine's Day proposal website with pla
 - **Celebration Message** - "Yay! 💘 I knew you'd say YES!"
 - **Special Promise** - "Chalo phir, dosa khilane le chalte hain! 🤤"
 - **Visual Effects** - Heart burst and colorful confetti animation
+- **Email Notification** - Automatically sends you a notification with the NO click count when she says YES!
 
 ## 🚀 Setup Instructions
 
@@ -70,6 +71,25 @@ Simply open `index.html` in your web browser. No server required!
 3. **After 10 NO Clicks**: 20-second countdown timer appears with romantic thinking messages
 4. **After 15 NO Clicks**: NO button starts escaping (moves away from cursor/clicks)
 5. **Clicking YES**: Success screen with dosa image, celebration message, heart burst, and confetti!
+6. **Notification Sent**: You automatically receive an email notification with how many times she clicked NO before saying YES!
+
+## 📧 Notification Feature
+
+When she clicks YES, you'll automatically receive an email notification containing:
+- **Subject**: "🎉 SHE SAID YES! 💖"
+- **Details**: How many times she clicked NO before saying yes
+- **Message**: Confirmation that it's time to plan that dosa date!
+
+**To customize the notification:**
+Edit the `sendNotification()` function in `script.js`:
+```javascript
+body: JSON.stringify({
+  name: "Your Name Here",
+  email: "your-email@gmail.com",  // Your email
+  subject: "🎉 SHE SAID YES! 💖",
+  description: `Great news! She said YES!...`
+})
+```
 
 ## 🎨 Customization
 
